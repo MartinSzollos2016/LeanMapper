@@ -806,7 +806,7 @@ class Result implements \Iterator
                 if (!empty($ids)) {
                     $data = $this->createTableSelection($table, $ids)
                         ->where('%n.%n IN %in', $table, $primaryKey, $ids)
-                        ->execute()->setRowClass(null)->fetchAll();
+                        ->execute()->setRowClass('Dibi\Row')->fetchAll();
                 }
                 $this->referenced[$key] = self::createInstance($data, $table, $this->connection, $this->mapper);
             }
@@ -833,7 +833,7 @@ class Result implements \Iterator
         $key .= '#' . $this->calculateArgumentsHash($args);
 
         if (!isset($this->referenced[$key])) {
-            $data = $this->connection->query($args)->setRowClass(null)->fetchAll();
+            $data = $this->connection->query($args)->setRowClass('Dibi\Row')->fetchAll();
             $this->referenced[$key] = self::createInstance($data, $table, $this->connection, $this->mapper);
         }
         return $this->referenced[$key];
@@ -881,7 +881,7 @@ class Result implements \Iterator
                     } else {
                         $statement->where('%n.%n IN %in', $table, $viaColumn, $ids);
                     }
-                    $data = $statement->execute()->setRowClass(null)->fetchAll();
+                    $data = $statement->execute()->setRowClass('Dibi\Row')->fetchAll();
                     $this->referencing[$key] = self::createInstance($data, $table, $this->connection, $this->mapper);
                 }
             } else {
@@ -905,7 +905,7 @@ class Result implements \Iterator
                 $key .= '#' . $this->calculateArgumentsHash($args);
 
                 if (!isset($this->referencing[$key])) {
-                    $data = $this->connection->query($args)->setRowClass(null)->fetchAll();
+                    $data = $this->connection->query($args)->setRowClass('Dibi\Row')->fetchAll();
                     $this->referencing[$key] = self::createInstance($data, $table, $this->connection, $this->mapper);
                 }
             }
@@ -921,7 +921,7 @@ class Result implements \Iterator
                 } else {
                     $data = $this->connection->query(
                         $this->buildUnionStrategySql($ids, $table, $viaColumn)
-                    )->setRowClass(null)->fetchAll();
+                    )->setRowClass('Dibi\Row')->fetchAll();
                 }
                 $this->referencing[$key] = self::createInstance($data, $table, $this->connection, $this->mapper);
             }
@@ -950,7 +950,7 @@ class Result implements \Iterator
 
                 if (!isset($this->referencing[$key])) {
                     $sql = $this->buildUnionStrategySql($ids, $table, $viaColumn, $filtering);
-                    $data = $this->connection->query($sql)->setRowClass(null)->fetchAll();
+                    $data = $this->connection->query($sql)->setRowClass('Dibi\Row')->fetchAll();
                     $result = self::createInstance($data, $table, $this->connection, $this->mapper);
                     $this->referencing[$key] = $result;
                 }

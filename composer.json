@@ -20,7 +20,7 @@
 	},
 	"require": {
 		"php": ">= 5.4",
-		"dibi/dibi": "~4.0@alpha"
+		"dibi/dibi": "~4.0@RC"
 	},
 	"require-dev": {
 		"nette/bootstrap": "~2.2",

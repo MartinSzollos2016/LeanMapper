@@ -26,7 +26,7 @@ class ResultDummyDriver implements \Dibi\ResultDriver
     }
 
 
-    public function seek($row): bool
+    public function seek(int $row): bool
     {
         $this->position = $row;
     }

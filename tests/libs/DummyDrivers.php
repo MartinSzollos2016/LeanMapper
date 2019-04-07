@@ -32,7 +32,7 @@ class ResultDummyDriver implements \Dibi\ResultDriver
     }
 
 
-    public function fetch($assoc): ?array
+    public function fetch(bool $assoc): ?array
     {
         $raw = array_slice($this->data, $this->position, 1, true);
         $data = is_array($raw) && !empty($raw) ? reset($raw) : [];

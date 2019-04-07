@@ -103,7 +103,7 @@ class PostgreDummyDriver extends \Dibi\Drivers\PostgreDriver
     }
 
 
-    public function query($sql): ?Dibi\ResultDriver
+    public function query(string $sql): ?Dibi\ResultDriver
     {
         $sql = trim($sql);
         if (isset($this->resultData[$sql])) {
@@ -113,7 +113,7 @@ class PostgreDummyDriver extends \Dibi\Drivers\PostgreDriver
     }
 
 
-    public function escapeText($value): string
+    public function escapeText(string $value): string
     {
         return "'" . strtr($value, ["'" => "\\'"]) . "'";
     }

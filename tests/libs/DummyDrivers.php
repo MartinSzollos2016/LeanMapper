@@ -74,7 +74,7 @@ class ResultDummyDriver implements \Dibi\ResultDriver
     }
 
 
-    public function unescapeBinary($value): string
+    public function unescapeBinary(string $value): string
     {
         return $value;
     }
